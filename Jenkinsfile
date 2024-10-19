@@ -6,11 +6,6 @@ pipeline {
         PROD_REPO = "manoharms/reactapp-prod"
     }
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/ManoharSankar/CapstoneProject.git'
-            }
-        }
         stage('Build') {
             steps {
                 script {
