@@ -1,5 +1,4 @@
 version: '3'
-
 services:
   guvi:
     # Use the image built by the Dockerfile
