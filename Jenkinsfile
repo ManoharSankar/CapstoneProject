@@ -14,11 +14,13 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+                    def branch = env.GIT_BRANCH
+                    echo "The branch that triggerd the build :${branch}"
 		   withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASS')]) {
-                        echo "The branch that triggerd the build :${env.BRANCH_NAME}"
+                        
                         sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASS'
+           }
                     sh './build.sh'
-			}
                 }
             }
         }
