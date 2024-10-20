@@ -4,9 +4,8 @@ IMAGE_NAME="capstoneproject_guvi"
 IMAGE_TAG="latest"
 DEV_REPO="manoharms/reactapp-dev"
 PROD_REPO="manoharms/reactapp-prod"
-#BRANCH=$(git rev-parse --abbrev-ref HEAD)
-echo "The branch that triggerd the build :${BRANCH}"
-#echo "CurrentBranch=$BRANCH"
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+echo "CurrentBranch=$BRANCH"
 
 
 COMPOSE_FILE="docker-compose.yml"
@@ -16,7 +15,7 @@ COMPOSE_FILE="docker-compose.yml"
 docker build -t $IMAGE_NAME:$IMAGE_TAG .
 
 # Push to Docker Hub based on the current branch
-if [ "$BRANCH" == "orgin/dev" ]; then
+if [ "$BRANCH" == "origin/dev" ]; then
     docker tag $IMAGE_NAME:$IMAGE_TAG $DEV_REPO:$IMAGE_TAG
     docker push $DEV_REPO:$IMAGE_TAG
 elif [ "$BRANCH" == "origin/main" ]; then
