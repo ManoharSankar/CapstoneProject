@@ -5,6 +5,7 @@ IMAGE_TAG="latest"
 DEV_REPO="manoharms/reactapp-dev"
 PROD_REPO="manoharms/reactapp-prod"
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
+echo "CurrentBranch=$BRANCH"
 COMPOSE_FILE="docker-compose.yml"
 
 # Build Docker image
