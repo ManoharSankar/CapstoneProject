@@ -6,6 +6,7 @@ DEV_REPO="manoharms/reactapp-dev"
 PROD_REPO="manoharms/reactapp-prod"
 BRANCH_NAME="$1"
 echo "$BRANCH_NAME"
+BRANCH_NAME="${BRANCH_NAME#origin/}"
 COMPOSE_FILE="docker-compose.yml"
 
 # Build Docker image
