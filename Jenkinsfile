@@ -20,7 +20,7 @@ pipeline {
                         
                         sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASS'
            }
-                    sh './build.sh'
+                    sh './build.sh ${BRANCH}'
                 }
             }
         }
