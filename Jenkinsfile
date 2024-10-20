@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-	     DOCKER_CREDENTIALS = credentials('docker-hub-credentials')
+	     DOCKER_CREDENTIALS = credentials('dockerhub-credentials')
     }
     stages {
 	stage('Checkout') {
@@ -13,7 +13,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-		   withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASS')]) {
+		   withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASS')]) {
                         sh 'docker login -u $DOCKER_USER -p $DOCKER_PASS'
                     sh './build.sh'
                 }
