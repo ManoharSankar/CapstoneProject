@@ -1,9 +1,8 @@
 pipeline {
     agent any
     environment {
-	DOCKER_CREDENTIALS_ID = 'docker-hub-credentials'
-        DEV_REPO = "manoharms/reactapp-dev"
-        PROD_REPO = "manoharms/reactapp-prod"
+	DOCKERHUB_USERNAME = credentials('DOCKER_USERNAME')  // Jenkins credentials for Docker Hub
+        DOCKERHUB_PASSWORD = credentials('DOCKER_PASS')
     }
     stages {
 	stage('Checkout') {
