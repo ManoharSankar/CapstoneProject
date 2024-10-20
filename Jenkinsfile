@@ -4,12 +4,12 @@ pipeline {
 	     DOCKER_CREDENTIALS = credentials('dockerhub-credentials')
     }
     stages {
-	stage('Checkout') {
+	/*stage('Checkout') {
             steps {
                 // Clone the GitHub repository
                 git branch: '${env.BRANCH_NAME}', url: 'https://github.com/ManoharSankar/CapstoneProject.git'
             }
-        }
+        }*/
         stage('Build') {
             steps {
                 script {
