@@ -2,7 +2,8 @@ pipeline {
     agent any
     environment {
 	     DOCKER_CREDENTIALS = credentials('dockerhub-credentials')
-         
+         BRANCH_NAME="${env.GIT_BRANCH}"
+
     }
     stages {
 	/*stage('Checkout') {
@@ -14,13 +15,11 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    def BRANCH = env.GIT_BRANCH
-                    echo "The branch that triggerd the build :${BRANCH}"
 		   withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASS')]) {
                         
                         sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASS'
            }
-                    sh './build.sh ${BRANCH}'
+                    sh './build.sh "${BRANCH_NAME}"'
                 }
             }
         }
