@@ -2,28 +2,31 @@ pipeline {
     agent any
     environment {
 	     DOCKER_CREDENTIALS = credentials('dockerhub-credentials')
+         BRANCH_NAME="${env.GIT_BRANCH}"
+
     }
     stages {
-	stage('Checkout') {
+	/*stage('Checkout') {
             steps {
                 // Clone the GitHub repository
-                git branch: 'dev', url: 'https://github.com/ManoharSankar/CapstoneProject.git'
+                git branch: '${env.BRANCH_NAME}', url: 'https://github.com/ManoharSankar/CapstoneProject.git'
             }
-        }
+        }*/
         stage('Build') {
             steps {
                 script {
 		   withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASS')]) {
+                        
                         sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASS'
-                    sh './build.sh'
-			}
+           }
+                    sh './build.sh "${BRANCH_NAME}"'
                 }
             }
         }
         stage('Deploy') {
             steps {
                 script {
-                    sh './deploy.sh'
+                    sh './deploy.sh "${BRANCH_NAME}"'
                 }
             }
         }
