@@ -7,7 +7,7 @@ pipeline {
 	stage('Checkout') {
             steps {
                 // Clone the GitHub repository
-                git branch: 'dev', url: 'https://github.com/ManoharSankar/CapstoneProject.git'
+                git branch: '${env.BRANCH_NAME}', url: 'https://github.com/ManoharSankar/CapstoneProject.git'
             }
         }
         stage('Build') {
