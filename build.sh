@@ -1,6 +1,6 @@
 #!/bin/bash
 set -x
-IMAGE_NAME="capstoneproject_guvi"
+IMAGE_NAME="guvi"
 IMAGE_TAG="latest"
 DEV_REPO="manoharms/reactapp-dev"
 PROD_REPO="manoharms/reactapp-prod"
