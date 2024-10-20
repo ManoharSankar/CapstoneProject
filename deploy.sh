@@ -26,4 +26,5 @@ elif [ "$BRANCH_NAME" == "main" ]; then
 else
     echo "No valid branch for deployment."
 fi
-
+#Running the containers
+docker-compose -f $COMPOSE_FILE up -d
