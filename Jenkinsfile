@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
 	     DOCKER_CREDENTIALS = credentials('dockerhub-credentials')
+         BRANCH_NAME=$BRANCH_NAME
     }
     stages {
 	/*stage('Checkout') {

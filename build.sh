@@ -6,7 +6,7 @@ DEV_REPO="manoharms/reactapp-dev"
 PROD_REPO="manoharms/reactapp-prod"
 #BRANCH=$(git rev-parse --abbrev-ref HEAD)
 #echo "CurrentBranch=$BRANCH"
-BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null || git describe --tags --exact-match 2>/dev/null || echo "DETACHED")
+BRANCH=$BRANCH_NAME
 echo "Current branch: $BRANCH"
 
 COMPOSE_FILE="docker-compose.yml"
