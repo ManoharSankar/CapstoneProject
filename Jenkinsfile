@@ -14,8 +14,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    def branch = env.GIT_BRANCH
-                    echo "The branch that triggerd the build :${branch}"
+                    def BRANCH = env.GIT_BRANCH
+                    echo "The branch that triggerd the build :${BRANCH}"
 		   withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASS')]) {
                         
                         sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASS'
