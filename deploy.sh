@@ -19,12 +19,14 @@ docker rm $CONTAINER_NAME || true
 # Pull and run the correct Docker image
 if [ "$BRANCH_NAME" == "dev" ]; then
     docker pull $DEV_REPO:$IMAGE_TAG
-    docker run -d -p 80:80 --name $CONTAINER_NAME $DEV_REPO:$IMAGE_TAG
+    #docker run -d -p 80:80 --name $CONTAINER_NAME $DEV_REPO:$IMAGE_TAG
+    docker-compose -f $COMPOSE_FILE up -d
+
 elif [ "$BRANCH_NAME" == "main" ]; then
     docker pull $PROD_REPO:$IMAGE_TAG
-    docker run -d -p 80:80 --name $CONTAINER_NAME $PROD_REPO:$IMAGE_TAG
+    #docker run -d -p 80:80 --name $CONTAINER_NAME $PROD_REPO:$IMAGE_TAG
+    docker-compose -f $COMPOSE_FILE up -d
 else
     echo "No valid branch for deployment."
 fi
-#Running the containers
-docker-compose -f $COMPOSE_FILE up -d
+
