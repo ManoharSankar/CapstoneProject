@@ -1,15 +1,22 @@
 pipeline {
     agent any
     environment {
-	DOCKER_CREDENTIALS_ID = 'docker-hub-credentials'
-        DEV_REPO = "manoharms/reactapp-dev"
-        PROD_REPO = "manoharms/reactapp-prod"
+	     DOCKER_CREDENTIALS = credentials('dockerhub-credentials')
     }
     stages {
+	stage('Checkout') {
+            steps {
+                // Clone the GitHub repository
+                git branch: 'dev', url: 'https://github.com/ManoharSankar/CapstoneProject.git'
+            }
+        }
         stage('Build') {
             steps {
                 script {
+		   withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASS')]) {
+                        sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASS'
                     sh './build.sh'
+			}
                 }
             }
         }

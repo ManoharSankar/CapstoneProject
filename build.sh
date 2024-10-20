@@ -8,10 +8,7 @@ BRANCH=$(git rev-parse --abbrev-ref HEAD)
 COMPOSE_FILE="docker-compose.yml"
 
 # Build Docker image
-#docker build -t $IMAGE_NAME:$IMAGE_TAG .
-#Remove the previous image 
-docker rmi -f $IMAGE_NAME:$IMAGE_TAG
-docker-compose -f $COMPOSE_FILE build
+docker build -t $IMAGE_NAME:$IMAGE_TAG .
 
 # Push to Docker Hub based on the current branch
 if [ "$BRANCH" == "dev" ]; then
