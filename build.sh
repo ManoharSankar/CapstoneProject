@@ -9,8 +9,6 @@ echo "$BRANCH_NAME"
 BRANCH_NAME="${BRANCH_NAME#origin/}"
 COMPOSE_FILE="docker-compose.yml"
 
-# Build Docker image
-
 #docker build -t $IMAGE_NAME:$IMAGE_TAG .
 
 # Push to Docker Hub based on the current branch
