@@ -5,7 +5,7 @@ IMAGE_TAG="latest"
 DEV_REPO="manoharms/reactapp-dev"
 PROD_REPO="manoharms/reactapp-prod"
 #BRANCH=$(git rev-parse --abbrev-ref HEAD)
-BRANCH=$1
+BRANCH=$BRANCH
 echo "CurrentBranch=$BRANCH"
 
 
