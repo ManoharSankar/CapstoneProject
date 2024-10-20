@@ -13,7 +13,7 @@ docker stop $CONTAINER_NAME || true
 docker rm $CONTAINER_NAME || true
 
 #Running the containers
-docker-compose -f $COMPOSE_FILE up
+#docker-compose -f $COMPOSE_FILE up
 
 # Pull and run the correct Docker image
 if [ "$BRANCH" == "dev" ]; then
