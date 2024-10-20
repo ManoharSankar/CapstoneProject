@@ -1,8 +1,7 @@
 pipeline {
     agent any
     environment {
-	DOCKERHUB_USERNAME = credentials('DOCKER_USERNAME')  // Jenkins credentials for Docker Hub
-        DOCKERHUB_PASSWORD = credentials('DOCKER_PASS')
+	     DOCKER_CREDENTIALS = credentials('docker-hub-credentials')
     }
     stages {
 	stage('Checkout') {
@@ -14,6 +13,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+		   withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASS')]) {
+                        sh 'docker login -u $DOCKER_USER -p $DOCKER_PASS'
                     sh './build.sh'
                 }
             }
