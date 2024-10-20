@@ -11,7 +11,7 @@ COMPOSE_FILE="docker-compose.yml"
 #docker build -t $IMAGE_NAME:$IMAGE_TAG .
 #Remove the previous image 
 docker rmi -f $IMAGE_NAME:$IMAGE_TAG
-docker-compose -f $COMPOSE_FILE build
+#docker-compose -f $COMPOSE_FILE build
 
 # Push to Docker Hub based on the current branch
 if [ "$BRANCH" == "dev" ]; then
