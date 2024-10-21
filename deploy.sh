@@ -26,7 +26,7 @@ elif [[ "$BRANCH_NAME" == "main" && "$PROD_REPO" == "manoharms/guviapp-prod" ]];
     # Stop and remove existing container
     docker stop $PROD_CONTAINER_NAME || true
     docker rm $PROD_CONTAINER_NAME || true
-    docker-compose -f $PROD_COMPOSE_FILE up -d
+    #docker-compose -f $PROD_COMPOSE_FILE up -d
 else
     echo "No valid branch for deployment."
 fi
