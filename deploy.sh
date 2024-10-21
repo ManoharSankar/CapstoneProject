@@ -11,11 +11,14 @@ BRANCH_NAME="$1"
 echo "$BRANCH_NAME"
 BRANCH_NAME="${BRANCH_NAME#origin/}"
 
+
 # Pull and run the correct Docker image
 if [[ "$BRANCH_NAME" == "dev" && "$DEV_REPO" == "manoharms/guviapp-dev" ]]; then
     docker pull $DEV_REPO:$IMAGE_TAG
     #docker run -d -p 80:80 --name $CONTAINER_NAME $DEV_REPO:$IMAGE_TAG
     # Stop and remove existing container
+    docker stop $PROD_CONTAINER_NAME || true
+    docker rm $PROD_CONTAINER_NAME || true
     docker stop $DEV_CONTAINER_NAME || true
     docker rm $DEV_CONTAINER_NAME || true
     docker-compose -f $DEV_COMPOSE_FILE up -d
