@@ -14,7 +14,7 @@ COMPOSE_FILE="docker-compose.yml"
 #docker build -t $IMAGE_NAME:$IMAGE_TAG .
 
 # Push to Docker Hub based on the current branch
-if [ "$BRANCH_NAME" == "dev" && "$DEV_REPO" == "manoharms/guviapp-dev" ]; then
+if [[ "$BRANCH_NAME" == "dev" && "$DEV_REPO" == "manoharms/guviapp-dev" ]]; then
     docker-compose -f $COMPOSE_FILE --build
     docker tag $IMAGE_NAME:$IMAGE_TAG $DEV_REPO:$IMAGE_TAG
     docker push $DEV_REPO:$IMAGE_TAG
