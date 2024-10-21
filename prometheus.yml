@@ -13,7 +13,7 @@ scrape_configs:
   - job_name: 'guvi'
     metrics_path: '/'
     static_configs:
-      - targets: ['13.233.112.213:80']
+      - targets: ['http://13.201.53.40:80']
 rule_files:
   - "alert.rules.yml"
 
