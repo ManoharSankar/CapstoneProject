@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
         # Container name
-    container_name: guvi-app-container
+    container_name: guvi-app-container-prod
     # Map the container's port 80 to the host's port 3000 (or any port you prefer)
     ports:
       - "80:80"
