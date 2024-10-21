@@ -48,7 +48,6 @@ services:
       - my-network
     depends_on:
       - prometheus
-
 networks:
   my-network:
     driver: bridge
