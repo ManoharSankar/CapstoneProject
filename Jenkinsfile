@@ -32,6 +32,10 @@ pipeline {
         }
     }
     post {
+        always {
+            // Clean workspace after the build, regardless of the result
+            cleanWs()
+        }
         success {
             mail to: 'manoharsankar93@gmail.com',
                  subject: "Build Successful: ${env.JOB_NAME}",
