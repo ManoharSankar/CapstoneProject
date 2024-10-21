@@ -33,10 +33,14 @@ pipeline {
     }
     post {
         success {
-            echo "Build and Deployment Successful!"
+            mail to: 'manoharsankar93@gmail.com',
+                 subject: "Build Successful: ${env.JOB_NAME}",
+                 body: "The build ${env.BUILD_NUMBER} was successful!"
         }
         failure {
-            echo "Build or Deployment Failed."
+            mail to: 'manoharsankar93@gmail.com',
+                 subject: "Build Failed: ${env.JOB_NAME}",
+                 body: "The build ${env.BUILD_NUMBER} failed. Please check the logs."
         }
     }
 }
