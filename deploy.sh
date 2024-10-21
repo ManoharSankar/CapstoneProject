@@ -16,7 +16,7 @@ docker rm $CONTAINER_NAME || true
 #docker-compose -f $COMPOSE_FILE up
 
 # Pull and run the correct Docker image
-if [ "$BRANCH_NAME" == "dev" && "$DEV_REPO" == "manoharms/guviapp-dev" ]; then
+if [[ "$BRANCH_NAME" == "dev" && "$DEV_REPO" == "manoharms/guviapp-dev" ]]; then
     docker pull $DEV_REPO:$IMAGE_TAG
     #docker run -d -p 80:80 --name $CONTAINER_NAME $DEV_REPO:$IMAGE_TAG
     docker-compose -f $COMPOSE_FILE up -d
