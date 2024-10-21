@@ -4,8 +4,7 @@ services:
     # Use the image built by the Dockerfile
     build:
       context: .
-      dockerfile: Dockerfile
-    # Container name
+        # Container name
     container_name: guvi-app-container
     # Map the container's port 80 to the host's port 3000 (or any port you prefer)
     ports:

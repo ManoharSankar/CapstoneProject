@@ -14,11 +14,11 @@ COMPOSE_FILE="docker-compose.yml"
 #docker build -t $IMAGE_NAME:$IMAGE_TAG .
 
 # Push to Docker Hub based on the current branch
-if [ "$BRANCH_NAME" == "dev" ]; then
+if [ "$BRANCH_NAME" == "dev" && "$DEVO_REPO" == "manoharms/reactapp-dev" ]; then
     docker-compose -f $COMPOSE_FILE --build
     docker tag $IMAGE_NAME:$IMAGE_TAG $DEV_REPO:$IMAGE_TAG
     docker push $DEV_REPO:$IMAGE_TAG
-elif [ "$BRANCH_NAME" == "main" ]; then
+elif [ "$BRANCH_NAME" == "main" && "$PROD_REPO" == "manoharms/reactapp=prod" ]; then
     docker-compose -f $COMPOSE_FILE --build
     docker tag $IMAGE_NAME:$IMAGE_TAG $PROD_REPO:$IMAGE_TAG
     docker push $PROD_REPO:$IMAGE_TAG
