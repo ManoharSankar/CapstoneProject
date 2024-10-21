@@ -7,7 +7,6 @@ DEV_CONTAINER_NAME="guvi-app-container-dev"
 PROD_CONTAINER_NAME="guvi-app-container-prod"
 DEV_COMPOSE_FILE="docker-compose-dev.yml"
 PROD_COMPOSE_FILE="docker-compose-prod.yml"
-MONITOR_COMPOSE_FILE="docker-compose-monitoring.yml"
 BRANCH_NAME="$1"
 echo "$BRANCH_NAME"
 BRANCH_NAME="${BRANCH_NAME#origin/}"
@@ -22,8 +21,7 @@ if [[ "$BRANCH_NAME" == "dev" && "$DEV_REPO" == "manoharms/guviapp-dev" ]]; then
     docker rm $PROD_CONTAINER_NAME || true
     docker stop $DEV_CONTAINER_NAME || true
     docker rm $DEV_CONTAINER_NAME || true
-    docker-compose -f $DEV_COMPOSE_FILE -f $MONITOR_COMPOSE_FILE up -d
-
+    docker-compose -f $DEV_COMPOSE_FILE up -d
 
 elif [[ "$BRANCH_NAME" == "main" && "$PROD_REPO" == "manoharms/guviapp-prod" ]]; then
     docker pull $PROD_REPO:$IMAGE_TAG
@@ -33,7 +31,7 @@ elif [[ "$BRANCH_NAME" == "main" && "$PROD_REPO" == "manoharms/guviapp-prod" ]];
     docker rm $DEV_CONTAINER_NAME || true
     docker stop $PROD_CONTAINER_NAME || true
     docker rm $PROD_CONTAINER_NAME || true
-    docker-compose -f $PROD_COMPOSE_FILE -f $MONITOR_COMPOSE_FILE up -d
+    docker-compose -f $PROD_COMPOSE_FILE up -d
 else
     echo "No valid branch for deployment."
 fi
