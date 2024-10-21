@@ -2,8 +2,8 @@
 set -x
 IMAGE_NAME="guvi"
 IMAGE_TAG="latest"
-DEV_REPO="manoharms/reactapp-dev"
-PROD_REPO="manoharms/reactapp-prod"
+DEV_REPO="manoharms/guviapp-dev"
+PROD_REPO="manoharms/guviapp-prod"
 BRANCH_NAME="$1"
 echo "$BRANCH_NAME"
 BRANCH_NAME="${BRANCH_NAME#origin/}"
