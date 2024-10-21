@@ -17,14 +17,14 @@ services:
     build:
       context: ./express-server
     ports:
-      - "3001:3001"
+      - "3003:3003"
     networks:
       - my-network
 
   node-exporter:
     image: prom/node-exporter
     ports:
-      - "9100:9100"
+      - "9102:9102"
     networks:
       - my-network
 
@@ -33,7 +33,7 @@ services:
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
-      - "9090:9090"
+      - "9091:9091"
     networks:
       - my-network
     depends_on:
@@ -43,7 +43,7 @@ services:
   grafana:
     image: grafana/grafana
     ports:
-      - "3002:3000"
+      - "3004:3000"
     networks:
       - my-network
     depends_on:
