@@ -24,6 +24,8 @@ elif [[ "$BRANCH_NAME" == "main" && "$PROD_REPO" == "manoharms/guviapp-prod" ]];
     docker pull $PROD_REPO:$IMAGE_TAG
     #docker run -d -p 80:80 --name $CONTAINER_NAME $PROD_REPO:$IMAGE_TAG
     # Stop and remove existing container
+    docker stop $DEV_CONTAINER_NAME || true
+    docker rm $DEV_CONTAINER_NAME || true
     docker stop $PROD_CONTAINER_NAME || true
     docker rm $PROD_CONTAINER_NAME || true
     docker-compose -f $PROD_COMPOSE_FILE up -d
