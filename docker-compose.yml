@@ -44,6 +44,21 @@ services:
     image: grafana/grafana
     ports:
       - "3002:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin # Default password, should be changed in production
+      - GF_SMTP_ENABLED=true
+      - GF_SMTP_HOST=smtp.example.com:587 # Replace with your SMTP server
+      - GF_SMTP_USER=username@example.com # Replace with your email username
+      - GF_SMTP_PASSWORD=yourpassword     # Replace with your email password
+      - GF_SMTP_FROM_ADDRESS=alert@example.com # The email address from which alerts will be sent
+      - GF_SMTP_FROM_NAME=Grafana Alerts
+      - GF_SMTP_SKIP_VERIFY=true  # Optional, skip SSL verification if using self-signed certs
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    restart: always
+
+volumes:
+  grafana-storage:
     networks:
       - my-network
     depends_on:
